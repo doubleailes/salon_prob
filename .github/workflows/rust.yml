@@ -13,11 +13,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    container: ghcr.io/doubleailes/rust-docker-nextest:latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo nextest run
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: 🔨 Build
+        run: cargo build
+      - name: ✔️ Tests
+        run: cargo test
