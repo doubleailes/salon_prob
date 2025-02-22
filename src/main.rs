@@ -1,11 +1,8 @@
-extern crate w1_therm_reader;
+use serde::{Deserialize, Serialize};
 use futures::prelude::*;
 use influxdb2::models::DataPoint;
 use influxdb2::Client;
 use w1_therm_reader::{convert_to_metric, read_from_file};
-extern crate confy;
-#[macro_use]
-extern crate serde_derive;
 
 #[derive(Debug, Serialize, Deserialize)]
 struct ConfyConfig {
