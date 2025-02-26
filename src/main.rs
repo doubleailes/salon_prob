@@ -27,7 +27,7 @@ impl Default for ConfyConfig {
 }
 
 #[derive(WriteDataPoint, Debug)]
-#[measurement = "cpu_load_short"]
+#[measurement = "Temperature"]
 struct Temperature {
     #[influxdb(tag)]
     location: Option<String>,
@@ -43,7 +43,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let file = confy::get_configuration_file_path("salon_prob", None)?;
     println!("The configuration file path is: {:#?}", file);
     let client = Client::new(cfg.influx_host, cfg.influx_org, cfg.influx_token);
-    let t = read_from_file(&cfg.bus_file).unwrap();
+    let t = read_from_file(&cfg.bus_file).expect("Can read from probe");
     let t: Temperature = Temperature {
         location: Some("Salon".to_string()),
         value: convert_to_metric(t).into(),
