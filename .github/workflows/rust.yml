@@ -51,6 +51,10 @@ jobs:
           - os-name: macOS-x86_64
             runs-on: macOS-latest
             target: x86_64-apple-darwin
+          
+          - os-name: Linux-armv6
+            runs-on: ubuntu-24.04
+            target: arm-unknown-linux-gnueabihf
 
           # more targets here ...
 
